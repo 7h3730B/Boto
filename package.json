@@ -1,0 +1,22 @@
+{
+  "name": "boto",
+  "version": "0.0.1",
+  "description": "A little Bot for me and my friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7h3730B/Boto.git"
+  },
+  "author": "7h3730B",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/7h3730B/Boto/issues"
+  },
+  "homepage": "https://github.com/7h3730B/Boto#readme",
+  "dependencies": {
+    "discord.js": "^12.1.1"
+  }
+}
