@@ -2,6 +2,9 @@ const {
     Client,
     Collection
 } = require("discord.js");
+const {
+    getString
+} = require("./src/utils/language");
 const fs = require("fs");
 const {
     join
@@ -15,6 +18,7 @@ const client = new Client({
 
 client.log = new Logger();
 client.commands = new Collection();
+client.getString = getString;
 
 // Load Commands
 client.log.info("---------Loading Commands----------");
@@ -27,7 +31,6 @@ for (const folders of fs.readdirSync(join(__dirname, "src/commands"))) {
     client.log.debug("--- Finished category: " + folders + " ---");
 }
 client.log.info("---------Finished Commands---------\n");
-console.debug(client.commands);
 
 // Load Events
 client.log.info("----------Loading Events-----------");
