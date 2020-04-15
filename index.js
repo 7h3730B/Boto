@@ -6,6 +6,7 @@ const {
     getString
 } = require("./src/utils/language");
 const fs = require("fs");
+const embeds = require("./src/utils/embeds");
 const {
     join
 } = require("path");
@@ -19,6 +20,7 @@ const client = new Client({
 client.log = new Logger();
 client.commands = new Collection();
 client.getString = getString;
+client.embeds = embeds;
 
 // Load Commands
 client.log.info("---------Loading Commands----------");

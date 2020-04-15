@@ -1,5 +1,5 @@
 // TODO: Integrate Guild Settings 
-function getString(guild, string) {
+async function getString(guild, string) {
     
     const language = "de_de"; // de_de or en_us
     const json = require("../languages/" + language + ".json");
