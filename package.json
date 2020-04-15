@@ -4,7 +4,8 @@
   "description": "A little Bot for me and my friends",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node index.js",
+    "nodemon": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,19 @@
     "url": "https://github.com/7h3730B/Boto/issues"
   },
   "homepage": "https://github.com/7h3730B/Boto#readme",
+  "nodemonConfig": {
+    "ignore": ["node_modules/*", "logs/*", "package-lock.json", "README.md"],
+    "delay": "2500"
+  },
   "dependencies": {
-    "discord.js": "^12.1.1"
+    "@discordjs/uws": "^11.149.1",
+    "discord.js": "^12.1.1",
+    "erlpack": "discordapp/erlpack",
+    "node-opus": "^0.3.1",
+    "winston": "^3.2.1",
+    "zlib-sync": "^0.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }
