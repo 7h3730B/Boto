@@ -22,10 +22,12 @@ for (const folders of fs.readdirSync(join(__dirname, "src/commands"))) {
     client.log.debug("--- Loading category: " + folders + " ---");
     for (const files of fs.readdirSync(join(__dirname, "src/commands/" + folders))) {
         client.log.debug("- Loading " + files);
+        client.commands.set(files.split(".")[0], require(join(__dirname, "src/commands/" + folders + "/" + files)));
     }
     client.log.debug("--- Finished category: " + folders + " ---");
 }
 client.log.info("---------Finished Commands---------\n");
+console.debug(client.commands);
 
 // Load Events
 client.log.info("----------Loading Events-----------");
