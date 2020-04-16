@@ -15,8 +15,8 @@ module.exports = async (client, message) => {
     const args = message.content.slice(prefix.length).split(/ +/); // usage regex to split by every space
     const commandName = args.shift().toLowerCase();
 
-    const command = client.commands.get(commandName); // Gets the Command by the name
-    
+    let command = client.commands.get(commandName); // Gets the Command by the name
+
     if (!command) command = await client.commands.find(cmd => cmd.info.aliases && cmd.info.aliases.includes(commandName)); // or by the aliases
 
     if (!command) return;

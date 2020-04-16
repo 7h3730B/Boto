@@ -8,6 +8,6 @@ module.exports.info = {
     cooldown: 5,
 }
 
-module.exports.run = (client, message, args) => {
-    
+module.exports.run = async (client, message, args) => {
+
 }

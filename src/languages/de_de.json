@@ -13,5 +13,10 @@
     "embeds.buildemb.footertext": "Ausgeführt von: ${username}",
 
     "cmds.developer.test.description": "Nur zum Testen da sonst nichts",
-    "cmds.developer.test.usage": "<arg1> <arg2>"
+    "cmds.developer.test.usage": "<arg1> <arg2>",
+
+    "cmds.info.help.description": "Zeigt dir alle Commands und Kategorien",
+    "cmds.info.help.usage": "[Command|Kategorie]",
+    "cmds.info.help.all.title": "Alle Commands:",
+    "cmds.info.help.all.description": "Es gibt **${cmdscount}** Commands und **${categoriescount}** Kategorien."
 }

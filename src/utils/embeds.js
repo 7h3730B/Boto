@@ -40,7 +40,7 @@ module.exports.buildemb = async (title, description, color, fields, footer, imag
     let embed = new MessageEmbed()
         .setTitle(title || "")
         .setDescription(description || "")
-        .setColor(Colors.color || Colors.buildemb)
+        .setColor(color || Colors.buildemb)
         .setFooter(footer || (await client.getString(client.guild, "embeds.buildemb.footertext")).replace("${username}", message.author.username), message.author.avatarURL)
         .setImage(image || "")
         .setThumbnail(thumbnail || "");
