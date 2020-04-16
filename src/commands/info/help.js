@@ -10,6 +10,7 @@ module.exports.info = {
     dm: true,
     args: false,
     nsfw: false,
+    permission: 1,
     cooldown: 1,
 }
 

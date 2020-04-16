@@ -13,6 +13,7 @@ const {
 const Logger = require("./src/utils/logger");
 const config = require("./config");
 const emojis = require("./src/utils/emojis");
+const permshandl = require("./src/utils/permissionhandler");
 
 const client = new Client({
     disabledEvents: ["TYPING_START"]
@@ -24,6 +25,7 @@ client.commands = new Collection();
 client.getString = getString;
 client.embeds = embeds;
 client.cooldowns = new Collection();
+client.permshandl = permshandl;
 
 // Load Commands
 client.log.info("---------Loading Commands----------");
