@@ -12,12 +12,14 @@ const {
 } = require("path");
 const Logger = require("./src/utils/logger");
 const config = require("./config");
+const emojis = require("./src/utils/emojis");
 
 const client = new Client({
     disabledEvents: ["TYPING_START"]
 });
 
 client.log = new Logger();
+client.emojis = emojis;
 client.commands = new Collection();
 client.getString = getString;
 client.embeds = embeds;

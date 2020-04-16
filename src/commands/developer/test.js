@@ -10,5 +10,4 @@ module.exports.info = {
 }
 
 module.exports.run = async (client, message, args) => {
-
 }
