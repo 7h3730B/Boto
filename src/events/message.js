@@ -33,6 +33,10 @@ module.exports = async (client, message) => {
         return client.embeds.error(client, message.channel, "", desc);
     }
 
+    if (command.info.nsfw && !message.channel.nsfw) {
+        return client.embeds.error(client, message.channel, "", (await client.getString(message.guild, "commandhandler.error.notnsfw")).replace("${cmd}", command.info.name))
+    }
+
     if (!client.cooldowns.has(command.info.name)) {
         client.cooldowns.set(command.info.name, new Collection());
     }

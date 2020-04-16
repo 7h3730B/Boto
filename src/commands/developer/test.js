@@ -5,6 +5,7 @@ module.exports.info = {
     aliases: ["t", "te"],
     dm: false,
     args: false,
+    nsfw: true,
     cooldown: 5,
 }
 
