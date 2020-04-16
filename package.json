@@ -19,7 +19,7 @@
   "homepage": "https://github.com/7h3730B/Boto#readme",
   "nodemonConfig": {
     "ignore": ["node_modules/*", "logs/*", "package-lock.json", "README.md"],
-    "delay": "2500"
+    "delay": "500"
   },
   "dependencies": {
     "@discordjs/uws": "^11.149.1",

@@ -1,0 +1,3 @@
+{
+    "commandhandler.error.nopermission": "You have no Permission to execute the Command: ${cmd}. You need the Permission Level: ${requiredlevel}, but you only have ${userlevel}"
+}

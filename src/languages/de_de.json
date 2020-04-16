@@ -1,0 +1,8 @@
+{
+    "commandhandler.error.nopermission": "Du hast keine Berechtigung den Command ${cmd} auszuführen. Du brauchst ${requiredlevel}, aber du hast nur ${userlevel}",
+
+    "embeds.success.footertext": "Erfolgreich ausgeführt auf Anfrage von: ${username}",
+    "embeds.error.footertext": "Ein Fehler trat...",
+    "embeds.warn.footertext": "${username} hat eine Warnung ausgelöst",
+    "embeds.buildemb.footertext": "Ausgeführt von: ${username}"
+}

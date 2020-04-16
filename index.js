@@ -2,7 +2,11 @@ const {
     Client,
     Collection
 } = require("discord.js");
+const {
+    getString
+} = require("./src/utils/language");
 const fs = require("fs");
+const embeds = require("./src/utils/embeds");
 const {
     join
 } = require("path");
@@ -15,6 +19,8 @@ const client = new Client({
 
 client.log = new Logger();
 client.commands = new Collection();
+client.getString = getString;
+client.embeds = embeds;
 
 // Load Commands
 client.log.info("---------Loading Commands----------");
@@ -22,6 +28,7 @@ for (const folders of fs.readdirSync(join(__dirname, "src/commands"))) {
     client.log.debug("--- Loading category: " + folders + " ---");
     for (const files of fs.readdirSync(join(__dirname, "src/commands/" + folders))) {
         client.log.debug("- Loading " + files);
+        client.commands.set(files.split(".")[0], require(join(__dirname, "src/commands/" + folders + "/" + files)));
     }
     client.log.debug("--- Finished category: " + folders + " ---");
 }
