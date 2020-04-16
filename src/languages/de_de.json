@@ -1,5 +1,5 @@
 {
-    "commandhandler.error.nopermission": "Du hast keine Berechtigung den Command ${cmd} auszuführen. Du brauchst ${requiredlevel}, aber du hast nur ${userlevel}",
+    "commandhandler.error.nopermission": "Du hast keine Berechtigung den Command **${cmd}** auszuführen. Du brauchst **${requiredlevel}**, aber du hast nur **${userlevel}**",
     "commandhandler.error.dm": "Dieser Command kann nur auf Guilds ausgeführt werden",
     "commandhandler.error.args": "Du hast keine Argumente angegeben",
     "commandhandler.error.usage": "\nDu musst den Command so verwenden: ${prefix}${command} ${usage}",

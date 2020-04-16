@@ -25,6 +25,10 @@ module.exports = async (client, message) => {
         return client.embeds.error(client, message.channel, "", await client.getString(message.guild, "commandhandler.error.dm"));
     }
 
+    if (command.info.permission > await client.permshandl.getPermissionlvl(message.author, message.guild)) {
+        return client.embeds.error(client, message.channel, "", (await client.getString(message.guild, "commandhandler.error.nopermission")).replace("${cmd}", command.info.name).replace("${requiredlevel}", command.info.permission).replace("${userlevel}", await client.permshandl.getPermissionlvl(message.author, message.guild)));
+    }
+
     if (command.info.args && !args.length) {
         let desc = await client.getString(message.guild, "commandhandler.error.args");
 
