@@ -21,6 +21,7 @@ client.log = new Logger();
 client.commands = new Collection();
 client.getString = getString;
 client.embeds = embeds;
+client.cooldowns = new Collection();
 
 // Load Commands
 client.log.info("---------Loading Commands----------");

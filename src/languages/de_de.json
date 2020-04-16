@@ -1,8 +1,33 @@
 {
     "commandhandler.error.nopermission": "Du hast keine Berechtigung den Command ${cmd} auszuführen. Du brauchst ${requiredlevel}, aber du hast nur ${userlevel}",
+    "commandhandler.error.dm": "Dieser Command kann nur auf Guilds ausgeführt werden",
+    "commandhandler.error.args": "Du hast keine Argumente angegeben",
+    "commandhandler.error.usage": "\nDu musst den Command so verwenden: ${prefix}${command} ${usage}",
+    "commandhandler.warn.cooldown": "Du musst noch ${timeleft} Sekunden warten bist du denn Command: ${cmdname} wieder nutzen kannst",
+    "commandhandler.error.failed": "Der Command konnte nicht ausgeführt werden",
+    "commandhandler.error.failedtitle": "Command failed",
+    "commandhandler.error.notnsfw": "Der Command: **${cmd}** kann **nur** in NSFW Channel ausgeführt werden",
 
     "embeds.success.footertext": "Erfolgreich ausgeführt auf Anfrage von: ${username}",
-    "embeds.error.footertext": "Ein Fehler trat...",
+    "embeds.error.footertext": "Ein Fehler trat auf...",
     "embeds.warn.footertext": "${username} hat eine Warnung ausgelöst",
-    "embeds.buildemb.footertext": "Ausgeführt von: ${username}"
+    "embeds.buildemb.footertext": "Ausgeführt von: ${username}",
+
+    "cmds.developer.test.description": "Nur zum Testen da sonst nichts",
+    "cmds.developer.test.usage": "<arg1> <arg2>",
+
+    "cmds.info.help.description": "Zeigt dir alle Commands und Kategorien",
+    "cmds.info.help.usage": "[Command|Kategorie]",
+    "cmds.info.help.all.title": "Alle Commands:",
+    "cmds.info.help.all.description": "Es gibt **${cmdscount}** Commands und **${categoriescount}** Kategorien.",
+    "cmds.info.help.cmds.usage": "Sollte so benutzt werden:",
+    "cmds.info.help.cmds.args": "Braucht Argumente",
+    "cmds.info.help.cmds.aliases": "Kann man auch verwenden:",
+    "cmds.info.help.cmds.dm": "Kann auch in DMs verwendet werden:",
+    "cmds.info.help.cmds.cooldown": "Cooldown",
+    "cmds.info.help.cmds.yes": "Ja",
+    "cmds.info.help.cmds.no": "Nein",
+    "cmds.info.help.categories.title": "Nichts gefunden",
+    "cmds.info.help.categories.description": "Konnte keine Kategorie und auch keinen Comamnd für: **${args[0]}** finden",
+    "cmds.info.help.cmds.nsfw": "Kann nur in einem NSFW Channel ausgeführt werden"
 }
