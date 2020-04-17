@@ -17,12 +17,12 @@
 |---|---|
 | PermissionLevel | 1 |
 | Categorie | developer |
-| Cooldown | 5 seconds |
+| Cooldown | 5 second(s) |
 | Aliases | t, te
 | NSFW | true |
 
-**Usage:**
-\<arg1> \<arg2>
+**Usage:**   
+test \<arg1> \<arg2>
 ---
 ## INFO
 
@@ -34,10 +34,9 @@
 |---|---|
 | PermissionLevel | 1 |
 | Categorie | info |
-| Cooldown | 1 seconds |
+| Cooldown | 1 second(s) |
 | available in DMs | true |
 
-**Usage:**
-[Command] - Shows you information of a command
-[Categorie] - Shows you all Commands from a Categorie
+**Usage:**   
+help [Command] - Shows you information of a command<br />help [Categorie] - Shows you all Commands from a Categorie
 ---
