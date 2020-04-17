@@ -1,12 +1,12 @@
 # Commands List
-
+ --- 
 ## DEVELOPER
 - [test](#test)
 ## INFO
 - [help](#help)
 
- # Command Details 
-
+# Command Details 
+ --- 
 ## DEVELOPER
 
 ### test
@@ -17,10 +17,12 @@
 |---|---|
 | PermissionLevel | 1 |
 | Categorie | developer |
+| Cooldown | 5 seconds |
 | Aliases | t, te
 | NSFW | true |
+
 **Usage:**
- <arg1> <arg2>
+\<arg1> \<arg2>
 ---
 ## INFO
 
@@ -32,8 +34,10 @@
 |---|---|
 | PermissionLevel | 1 |
 | Categorie | info |
+| Cooldown | 1 seconds |
 | available in DMs | true |
+
 **Usage:**
- [Command] - Shows you information of a command
+[Command] - Shows you information of a command
 [Categorie] - Shows you all Commands from a Categorie
 ---
