@@ -37,7 +37,7 @@ for (const categorie of fs.readdirSync(join(__dirname, "src/commands"))) {
         markdown += "|---|---|\n";
         markdown += `| PermissionLevel | ${cmdreq.info.permission} |\n`;
         markdown += `| Categorie | ${categorie} |\n`;
-        if (cmdreq.info.cooldown) markdown += `| Cooldown | ${cmdreq.info.cooldown} seconds |\n`
+        if (cmdreq.info.cooldown) markdown += `| Cooldown | ${cmdreq.info.cooldown} second(s) |\n`
         if (cmdreq.info.aliases) markdown += `| Aliases | ${cmdreq.info.aliases.join(", ")}\n`;
         if (cmdreq.info.nsfw) markdown += `| NSFW | ${cmdreq.info.nsfw} |\n`;
         if (cmdreq.info.dm) markdown += `| available in DMs | ${cmdreq.info.dm} |\n`;
