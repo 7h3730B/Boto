@@ -1,3 +1,33 @@
 {
-    "commandhandler.error.nopermission": "You have no Permission to execute the Command: ${cmd}. You need the Permission Level: ${requiredlevel}, but you only have ${userlevel}"
+    "commandhandler.error.nopermission": "You have no Permission to use the Command: **${cmd}**. You need the Permission Level: **${requiredlevel}** or above. Your Permission Level is: **${userlevel}**",
+    "commandhandler.error.dm": "This Command can only be used on Guilds",
+    "commandhandler.error.args": "This Command needs some arguments",
+    "commandhandler.error.usage": "\nThe right command usage: ${prefix}${command} ${usage}",
+    "commandhandler.warn.cooldown": "You need to wait ${timeleft} Seconds bevor you can use the command: ${cmdname} again",
+    "commandhandler.error.failed": "An Error occured than executing the Command",
+    "commandhandler.error.failedtitle": "Command failed",
+    "commandhandler.error.notnsfw": "The command: **${cmd}** can **only** be used in NSFW Channels",
+
+    "embeds.success.footertext": "Succesful request from: ${username}",
+    "embeds.error.footertext": "An Error occured...",
+    "embeds.warn.footertext": "${username} triggered a warning",
+    "embeds.buildemb.footertext": "Executed from: ${username}",
+
+    "cmds.developer.test.description": "Just for testing purposes",
+    "cmds.developer.test.usage": "<arg1> <arg2>",
+
+    "cmds.info.help.description": "Shows you all Categories and Commands",
+    "cmds.info.help.usage": "[Command] - Shows you information of a command\n[Categorie] - Shows you all Commands from a Categorie",
+    "cmds.info.help.all.title": "All commands:",
+    "cmds.info.help.all.description": "The Bot has **${cmdscount}** commands and **${categoriescount}** categories",
+    "cmds.info.help.cmds.usage": "Should be used like that:",
+    "cmds.info.help.cmds.args": "Needs Arguments",
+    "cmds.info.help.cmds.aliases": "Can also be used with:",
+    "cmds.info.help.cmds.dm": "Can also be used in DMs:",
+    "cmds.info.help.cmds.cooldown": "Cooldown",
+    "cmds.info.help.cmds.yes": "Yes",
+    "cmds.info.help.cmds.no": "No",
+    "cmds.info.help.categories.title": "Nothing found",
+    "cmds.info.help.categories.description": "Couldn't find a categorie or a command for: **${args[0]}**",
+    "cmds.info.help.cmds.nsfw": "Can only be used in NSFW Channels"
 }
