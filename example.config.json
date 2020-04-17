@@ -1,0 +1,7 @@
+{
+    "token": "your Discord token goes here",
+    "prefix": ";",
+    "debug": true,
+    "debugDiscord": true,
+    "owners": ["Your owner id goes here"]
+}
