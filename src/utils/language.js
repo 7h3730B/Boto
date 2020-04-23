@@ -8,10 +8,10 @@ async function getString(guild, string) {
     return json[string];
 }
 
+// Only used for Wiki so no database request
 function getStringSync(guild, string) {
     
-    let language = "de_de"; // de_de or en_us
-    if (!guild) language = "en_us";
+    let language = "en_us";
     const json = require("../languages/" + language + ".json");
 
     return json[string];

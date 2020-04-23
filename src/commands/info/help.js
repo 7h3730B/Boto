@@ -73,7 +73,7 @@ module.exports.run = async (client, message, args) => {
                 return client.embeds.buildemb("", "", "", fields, "", "", true, "", message, client);
 
             } else {
-                return client.embeds.error(client, message.channel, await client.getString(message.guild, "cmds.info.help.categories.title"), (await client.getString(message.guild, "cmds.info.help.categories.description")).replace("${args[0]}", args[0].toLowerCase()));
+                return client.embeds.error(client, await client.getString(message.guild, "cmds.info.help.categories.title"), (await client.getString(message.guild, "cmds.info.help.categories.description")).replace("${args[0]}", args[0].toLowerCase()), message);
             }
 
         } else {
@@ -98,7 +98,6 @@ module.exports.run = async (client, message, args) => {
             ]);
 
             if (command.info.aliases) {
-
                 fields.push([
                     await client.getString(message.guild, "cmds.info.help.cmds.aliases"),
                     command.info.aliases.join(", "),

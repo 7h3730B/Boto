@@ -9,8 +9,8 @@ const Colors = {
     buildemb: "FCFC07"
 }
 
-module.exports.success = async (client, channel, title, msg, message) => {
-    return channel.send(new MessageEmbed()
+module.exports.success = async (client, title, msg, message) => {
+    return message.channel.send(new MessageEmbed()
         .setTitle(title || "")
         .setDescription(msg)
         .setColor(Colors.success)
@@ -18,8 +18,8 @@ module.exports.success = async (client, channel, title, msg, message) => {
         .setFooter((await client.getString(client.guild, "embeds.success.footertext")).replace("${username}", message.author.username), message.author.avatarURL));
 }
 
-module.exports.error = async (client, channel, title, msg) => {
-    return channel.send(new MessageEmbed()
+module.exports.error = async (client, title, msg, message) => {
+    return message.channel.send(new MessageEmbed()
         .setTitle(title || "")
         .setDescription(msg)
         .setColor(Colors.error)
@@ -27,8 +27,8 @@ module.exports.error = async (client, channel, title, msg) => {
         .setFooter(await client.getString(client.guild, "embeds.error.footertext")));
 }
 
-module.exports.warn = async (client, channel, title, msg, message) => {
-    return channel.send(new MessageEmbed()
+module.exports.warn = async (client, title, msg, message) => {
+    return message.channel.send(new MessageEmbed()
         .setTitle(title || "")
         .setDescription(msg)
         .setColor(Colors.warn)

@@ -22,11 +22,11 @@ module.exports = async (client, message) => {
     if (!command) return;
 
     if (!command.info.dm && message.channel.type !== 'text') {
-        return client.embeds.error(client, message.channel, "", await client.getString(message.guild, "commandhandler.error.dm"));
+        return client.embeds.error(client,  "", await client.getString(message.guild, "commandhandler.error.dm"), message);
     }
 
     if (command.info.permission > await client.permshandl.getPermissionlvl(message.author, message.guild)) {
-        return client.embeds.error(client, message.channel, "", (await client.getString(message.guild, "commandhandler.error.nopermission")).replace("${cmd}", command.info.name).replace("${requiredlevel}", command.info.permission).replace("${userlevel}", await client.permshandl.getPermissionlvl(message.author, message.guild)));
+        return client.embeds.error(client, "", (await client.getString(message.guild, "commandhandler.error.nopermission")).replace("${cmd}", command.info.name).replace("${requiredlevel}", command.info.permission).replace("${userlevel}", await client.permshandl.getPermissionlvl(message.author, message.guild)), message);
     }
 
     if (command.info.args && !args.length) {
@@ -34,11 +34,11 @@ module.exports = async (client, message) => {
 
         if (command.info.usage) desc += (await client.getString(message.guild, "commandhandler.error.usage")).replace("${usage}", await client.getString(message.guild, command.info.usage)).replace("${prefix}", prefix).replace("${command}", commandName);
 
-        return client.embeds.error(client, message.channel, "", desc);
+        return client.embeds.error(client, "", desc, message);
     }
 
     if (command.info.nsfw && !message.channel.nsfw) {
-        return client.embeds.error(client, message.channel, "", (await client.getString(message.guild, "commandhandler.error.notnsfw")).replace("${cmd}", command.info.name))
+        return client.embeds.error(client, "", (await client.getString(message.guild, "commandhandler.error.notnsfw")).replace("${cmd}", command.info.name), message)
     }
 
     if (!client.cooldowns.has(command.info.name)) {
@@ -54,7 +54,7 @@ module.exports = async (client, message) => {
 
         if (now < expirationTime) {
             const timeLeft = (expirationTime - now) / 1000;
-            return client.embeds.warn(client, message.channel, "", (await client.getString(message.guild, "commandhandler.warn.cooldown")).replace("${timeleft}", timeLeft.toFixed(1)).replace("${cmdname}", command.info.name), message)
+            return client.embeds.warn(client, "", (await client.getString(message.guild, "commandhandler.warn.cooldown")).replace("${timeleft}", timeLeft.toFixed(1)).replace("${cmdname}", command.info.name), message)
         }
     }
 
@@ -65,6 +65,6 @@ module.exports = async (client, message) => {
         command.run(client, message, args);
     } catch (e) {
         client.log.error("Failed to execute a Command: " + e);
-        client.embeds.error(client, message.channel, await client.getString(message.guild, "commandhandler.error.failedtitle"), await client.getString(message.guild, "commandhandler.error.failed"));
+        client.embeds.error(client, await client.getString(message.guild, "commandhandler.error.failedtitle"), await client.getString(message.guild, "commandhandler.error.failed"), message);
     }
 };

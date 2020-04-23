@@ -1,6 +1,6 @@
 {
   "name": "boto",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "A little Bot for me and my friends",
   "main": "index.js",
   "scripts": {

@@ -6,8 +6,13 @@ async function changePermissionlvl(user, newlvl) {
 }
 
 async function getPermissionlvl(user, guild) {
-    if (owners.includes(user.id)) return 5;
-    if (guild) if (user = guild.ownerID) return 4;
+    if (owners.includes(user.id)) return 10;
+    if (guild) if (user = guild.ownerID) return 9;
+    if (false) return 8; // Could be used for things
+    if (false) return 7; // Could be used for things
+    if (false) return 6; // Could be used for things
+    if (false) return 5; // Could be used for things
+    if (false) return 4; // Could be used for things
     if (false) return 3; // Could be used for things like Admins
     if (false) return 2; // Could be used for things like Mods
     // TODO: Database request checks if banned from the bot completly or just on a guild
