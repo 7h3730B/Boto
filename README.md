@@ -1,4 +1,7 @@
 # Boto
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/28a05cbf463f49228d2f8085547dcaf0)](https://app.codacy.com/manual/7h3730B/Boto?utm_source=github.com&utm_medium=referral&utm_content=7h3730B/Boto&utm_campaign=Badge_Grade_Dashboard)
+
 > Just a little Discord bot for me and my friends.
 ---
 ### Commands
