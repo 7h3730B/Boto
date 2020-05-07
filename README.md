@@ -6,8 +6,7 @@
 ---
 ### Commands
 A list of all Commands and Categories can be found [here](./docs/commands.md).
-# **Warning:** This is just a barebone system for a discord bot right now.
-# This is on hold right now until i finish my Project [7hArray-visualizer](https://github.com/7h3730B/7hArray-visualizer) to learn more about vue.
+# **Warning:** Work in Progress
 ---
 ### Prerequisites
 ---
