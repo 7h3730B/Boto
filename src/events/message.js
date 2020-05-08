@@ -12,17 +12,42 @@ module.exports = async (client, message) => {
     // TODO: Get prefix from database
     if (!message.content.startsWith(prefix)) return; // Checks if the message starts with the Prefix
 
-    const args = [];
-    let str = message.content.trim();
+    const content = message.content.slice(prefix.length);
+    const cmdName = content.split(/ +/)[0];
 
-    while (str.length) { // allow spaces when surrounded with " or ' and to have as many spaces between arguments
+    let cmd = client.cmds.get(cmdName);
+
+    if (!cmd) cmd = await client.cmds.find(cmd => cmd.info.aliases && cmd.info.aliases.includes(cmdName));
+
+    if (!cmd) return; // Couldnt be found
+
+    if (!cmd.info.dm && message.channel.type !== 'text') return message.channel.send(await client.emb.buildemb(message, client, {
+        color: client.emb.colors.error,
+        description: await client.getString(message.guild, "commandhandler.error.dm"),
+    }));
+
+    let userPerm = await client.permshandler.getPermissionlvl(message.author, message.guild);
+    if (cmd.info.permission > userPerm) return message.channel.send(await client.emb.buildemb(message, client, {
+        color: client.emb.colors.error,
+        description: (await client.getString(message.guild, "commandhandler.error.nopermission")).replace("${cmd}", cmd.info.name).replace("${requiredlevel}", cmd.info.permission).replace("${userlevel}", userPerm)
+    }));
+
+    if (cmd.info.nsfw && !message.channel.nsfw) return message.channel.send(await client.emb.buildemb(message, client, {
+        color: client.emb.colors.error,
+        description: (await client.getString(message.guild, "commandhandler.error.notnsfw")).replace("${cmd}", cmd.info.name)
+    }));
+
+    const args = [];
+    let str = content.slice(cmdName.length).trim();
+
+    for (let i = 0; 0 < str.length; i++) { // allow spaces when surrounded with " or ' and to have as many spaces between arguments
         let arg;
         if (str.startsWith('"') && str.indexOf('"', 1) > 0) {
             arg = str.slice(1, str.indexOf('"', 1));
-            str.slice(str.indexOf('"', 1) + 1);
+            str = str.slice(str.indexOf('"', 1) + 1);
         } else if (str.startsWith("'") && str.indexOf("'", 1) > 0) {
             arg = str.slice(1, str.indexOf("'", 1));
-            str.slice(str.indexOf("'", 1) + 1);
+            str = str.slice(str.indexOf("'", 1) + 1);
         } else {
             arg = str.split(/\s+/g)[0]; // check for spaces with regex
             str = str.slice(arg.length);
@@ -31,60 +56,46 @@ module.exports = async (client, message) => {
         str = str.trim();
     }
 
-    console.log(args);
+    if (cmd.info.args && !args.length) {
+        let desc = await client.getString(message.guild, "commandhandler.error.args");
 
-    // const commandName = args.shift().toLowerCase();
+        if (cmd.info.usage) desc += (await client.getString(message.guild, "commandhandler.error.usage")).replace("${usage}", await client.getString(message.guild, cmd.info.usage)).replace("${prefix}", prefix).replace("${command}", cmdName);
 
-    // let command = client.commands.get(commandName); // Gets the Command by the name
+        return message.channel.send(await client.emb.buildemb(message, client, {
+            color: client.emb.colors.warn,
+            description: desc
+        }));
+    }
 
-    // if (!command) command = await client.commands.find(cmd => cmd.info.aliases && cmd.info.aliases.includes(commandName)); // or by the aliases
+    if (!client.cooldowns.has(cmd.info.name)) client.cooldowns.set(cmd.info.name, new Collection());
 
-    // if (!command) return;
+    const now = Date.now();
+    const timestamps = client.cooldowns.get(cmd.info.name);
+    const cooldownAmount = (cmd.info.cooldown || 3) * 1000;
 
-    // if (!command.info.dm && message.channel.type !== 'text') {
-    //     return client.embeds.error(client, "", await client.getString(message.guild, "commandhandler.error.dm"), message);
-    // }
+    if (timestamps.has(message.author.id)) {
+        const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
-    // if (command.info.permission > await client.permshandl.getPermissionlvl(message.author, message.guild)) {
-    //     return client.embeds.error(client, "", (await client.getString(message.guild, "commandhandler.error.nopermission")).replace("${cmd}", command.info.name).replace("${requiredlevel}", command.info.permission).replace("${userlevel}", await client.permshandl.getPermissionlvl(message.author, message.guild)), message);
-    // }
+        if (now < expirationTime) {
+            const timeLeft = (expirationTime - now) / 1000;
+            return message.channel.send(await client.emb.buildemb(message, client, {
+                color: client.emb.colors.warn,
+                description: (await client.getString(message.guild, "commandhandler.warn.cooldown")).replace("${timeleft}", timeLeft.toFixed(1)).replace("${cmdname}", cmd.info.name)
+            }));
+        }
+    }
 
-    // if (command.info.args && !args.length) {
-    //     let desc = await client.getString(message.guild, "commandhandler.error.args");
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-    //     if (command.info.usage) desc += (await client.getString(message.guild, "commandhandler.error.usage")).replace("${usage}", await client.getString(message.guild, command.info.usage)).replace("${prefix}", prefix).replace("${command}", commandName);
-
-    //     return client.embeds.error(client, "", desc, message);
-    // }
-
-    // if (command.info.nsfw && !message.channel.nsfw) {
-    //     return client.embeds.error(client, "", (await client.getString(message.guild, "commandhandler.error.notnsfw")).replace("${cmd}", command.info.name), message)
-    // }
-
-    // if (!client.cooldowns.has(command.info.name)) {
-    //     client.cooldowns.set(command.info.name, new Collection());
-    // }
-    // F
-    // const now = Date.now();
-    // const timestamps = client.cooldowns.get(command.info.name);
-    // const cooldownAmount = (command.info.cooldown || 3) * 1000;
-
-    // if (timestamps.has(message.author.id)) {
-    //     const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-
-    //     if (now < expirationTime) {
-    //         const timeLeft = (expirationTime - now) / 1000;
-    //         return client.embeds.warn(client, "", (await client.getString(message.guild, "commandhandler.warn.cooldown")).replace("${timeleft}", timeLeft.toFixed(1)).replace("${cmdname}", command.info.name), message)
-    //     }
-    // }
-
-    // timestamps.set(message.author.id, now);
-    // setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
-    // try {
-    //     command.run(client, message, args);
-    // } catch (e) {
-    //     client.log.error("Failed to execute a Command: " + e);
-    //     client.embeds.error(client, await client.getString(message.guild, "commandhandler.error.failedtitle"), await client.getString(message.guild, "commandhandler.error.failed"), message);
-    // }
+    try {
+        cmd.run(client, message, args);
+    } catch (e) {
+        client.log.error("Failed to execute a Command: " + e);
+        message.channel.send(await client.emb.buildemb(message, client, {
+            color: client.emb.colors.error,
+            title: await client.getString(message.guild, "commandhandler.error.failedtitle"),
+            description: await client.getString(message.guild, "commandhandler.error.failed")
+        }));
+    }
 };

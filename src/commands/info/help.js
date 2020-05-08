@@ -8,10 +8,7 @@ module.exports.info = {
     description: "cmds.info.help.description",
     usage: "cmds.info.help.usage",
     dm: true,
-    args: false,
-    nsfw: false,
     permission: 1,
-    cooldown: 1,
 }
 
 module.exports.run = async (client, message, args) => {

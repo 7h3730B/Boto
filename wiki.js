@@ -3,7 +3,7 @@ const {
     join
 } = require("path");
 const {
-    getStringSync
+    getString
 } = require("./src/utils/language");
 
 let markdown = "# Commands List\n --- \n";
@@ -28,7 +28,7 @@ for (const categorie of fs.readdirSync(join(__dirname, "src/commands"))) {
         if (!cmd.endsWith(".js")) return;
         const cmdreq = require(join(__dirname, "src/commands/" + categorie + "/" + cmd));
         markdown += `\n\n### ${cmdreq.info.name}\n\n`;
-        markdown += `> ${getStringSync("", cmdreq.info.description)}\n\n`;
+        markdown += `> ${getString("", cmdreq.info.description)}\n\n`;
         markdown += "| | |\n";
         markdown += "|---|---|\n";
         markdown += `| PermissionLevel | ${cmdreq.info.permission} |\n`;
@@ -39,7 +39,7 @@ for (const categorie of fs.readdirSync(join(__dirname, "src/commands"))) {
         if (cmdreq.info.dm) markdown += `| available in DMs | ${cmdreq.info.dm} |\n`;
         if (cmdreq.info.usage) {
             markdown += `\n**Usage:**   `;
-            markdown += `\n${cmdreq.info.name + " " + getStringSync("", cmdreq.info.usage).split('<').join('\\<').split('\n').join('<br />' + cmdreq.info.name + ' ')}\n`;
+            markdown += `\n${cmdreq.info.name + " " + getString("", cmdreq.info.usage).split('<').join('\\<').split('\n').join('<br />' + cmdreq.info.name + ' ')}\n`;
         }
     }
     markdown += "---\n";

@@ -7,7 +7,7 @@ async function changePermissionlvl(user, newlvl) {
 
 async function getPermissionlvl(user, guild) {
     if (owners.includes(user.id)) return 10;
-    if (guild) if (user = guild.ownerID) return 9;
+    if (guild) if (user == guild.ownerID) return 9;
     // if (false) return 8; // Could be used for things
     // if (false) return 7; // Could be used for things
     // if (false) return 6; // Could be used for things
