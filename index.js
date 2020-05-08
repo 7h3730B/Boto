@@ -21,11 +21,11 @@ const client = new Client({
 
 client.log = new Logger();
 client.emojis = emojis;
-client.commands = new Collection();
+client.cmds = new Collection(); // Command Collection
 client.getString = getString;
-client.embeds = embeds;
+client.emb = embeds;
 client.cooldowns = new Collection();
-client.permshandl = permshandl;
+client.permshandler = permshandl;
 
 // Load Commands
 client.log.info("---------Loading Commands----------");
@@ -33,7 +33,7 @@ for (const folders of fs.readdirSync(join(__dirname, "src/commands"))) {
     client.log.debug("--- Loading category: " + folders + " ---");
     for (const files of fs.readdirSync(join(__dirname, "src/commands/" + folders))) {
         client.log.debug("- Loading " + files);
-        client.commands.set(files.split(".")[0], require(join(__dirname, "src/commands/" + folders + "/" + files)));
+        client.cmds.set(files.split(".")[0], require(join(__dirname, "src/commands/" + folders + "/" + files)));
     }
     client.log.debug("--- Finished category: " + folders + " ---");
 }

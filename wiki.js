@@ -10,8 +10,6 @@ let markdown = "# Commands List\n --- \n";
 
 // get all Commands and Categories
 for (const categorie of fs.readdirSync(join(__dirname, "src/commands"))) {
-    let cmds = [];
-
     markdown += "## " + categorie.toUpperCase() + "\n";
 
     for (const cmd of fs.readdirSync(join(__dirname, "src/commands/" + categorie + "/"))) {
@@ -24,8 +22,6 @@ markdown += "\n# Command Details \n --- \n";
 
 // Load Commands itsself
 for (const categorie of fs.readdirSync(join(__dirname, "src/commands"))) {
-    let cmds = [];
-
     markdown += "## " + categorie.toUpperCase();
 
     for (const cmd of fs.readdirSync(join(__dirname, "src/commands/" + categorie + "/"))) {

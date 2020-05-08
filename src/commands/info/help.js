@@ -130,6 +130,5 @@ module.exports.run = async (client, message, args) => {
             ]);
             return client.embeds.buildemb(command.info.name + ":", await client.getString(message.guild, command.info.description), "", fields, "", "", true, "", message, client);
         }
-        return;
     }
 }

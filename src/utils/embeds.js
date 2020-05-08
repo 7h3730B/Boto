@@ -9,49 +9,22 @@ const Colors = {
     buildemb: "FCFC07"
 }
 
-module.exports.success = async (client, title, msg, message) => {
-    return message.channel.send(new MessageEmbed()
-        .setTitle(title || "")
-        .setDescription(msg)
-        .setColor(Colors.success)
-        .setTimestamp()
-        .setFooter((await client.getString(client.guild, "embeds.success.footertext")).replace("${username}", message.author.username), message.author.avatarURL));
-}
+const buildemb = async (message, client, {
+        opts
+    }) => new MessageEmbed()
+    .setTitle(opts.title)
+    .setAuthor(opts.author.name, opts.author.url)
+    .setDescription(opts.description || '')
+    .setThumbnail(opts.thumbnail)
+    .setColor(opts.color)
+    .attachFiles(opts.files || [])
+    .addFields(opts.fields || [])
+    .setImage(opts.image || '')
+    .setURL(opts.url)
+    .setTimestamp()
+    .setFooter(opts.footer || (await client.getString(client.guild, "embeds.buildemb.footertext")).replace("${username}", message.author.username), message.author.avatarURL);
 
-module.exports.error = async (client, title, msg, message) => {
-    return message.channel.send(new MessageEmbed()
-        .setTitle(title || "")
-        .setDescription(msg)
-        .setColor(Colors.error)
-        .setTimestamp()
-        .setFooter(await client.getString(client.guild, "embeds.error.footertext")));
-}
-
-module.exports.warn = async (client, title, msg, message) => {
-    return message.channel.send(new MessageEmbed()
-        .setTitle(title || "")
-        .setDescription(msg)
-        .setColor(Colors.warn)
-        .setTimestamp()
-        .setFooter((await client.getString(client.guild, "embeds.warn.footertext")).replace("${username}", message.author.username), message.author.avatarURL));
-}
-
-module.exports.buildemb = async (title, description, color, fields, footer, image, timestamp, thumbnail, message, client) => {
-    let embed = new MessageEmbed()
-        .setTitle(title || "")
-        .setDescription(description || "")
-        .setColor(color || Colors.buildemb)
-        .setFooter(footer || (await client.getString(client.guild, "embeds.buildemb.footertext")).replace("${username}", message.author.username), message.author.avatarURL)
-        .setImage(image || "")
-        .setThumbnail(thumbnail || "");
-
-    if (timestamp) embed.setTimestamp();
-
-    if (fields && (typeof fields !== "undefined" || fields !== [])) {
-        fields.forEach((field) => {
-            embed.addField(field[0], field[1], field[2]);
-        });
-    }
-
-    return message.channel.send(embed);
+module.exports = {
+    buildemb: buildemb,
+    colors: Colors
 }
