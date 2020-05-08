@@ -1,10 +1,12 @@
 # Boto
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/28a05cbf463f49228d2f8085547dcaf0)](https://app.codacy.com/manual/7h3730B/Boto?utm_source=github.com&utm_medium=referral&utm_content=7h3730B/Boto&utm_campaign=Badge_Grade_Dashboard)
+
 > Just a little Discord bot for me and my friends.
 ---
 ### Commands
 A list of all Commands and Categories can be found [here](./docs/commands.md).
-# **Warning:** This is just a barebone system for a discord bot right now.
-# This is on hold right now until i finish my Project [7hArray-visualizer](https://github.com/7h3730B/7hArray-visualizer) to learn more about vue.
+# **Warning:** Work in Progress
 ---
 ### Prerequisites
 ---
