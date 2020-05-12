@@ -21,26 +21,30 @@ module.exports = async (client, message) => {
 
     if (!cmd) return; // Couldnt be found
 
+    // Check if command can't be executed in dms && if the channel is a dm
     if (!cmd.info.dm && message.channel.type !== 'text') return message.channel.send(await client.emb.buildemb(message, client, {
         color: client.emb.colors.error,
         description: await client.getString(message.guild, "commandhandler.error.dm"),
     }));
 
+    // Checks if the required Permissionlevel for the Command > than the Permissionlevel of the Author
     let userPerm = await client.permshandler.getPermissionlvl(message.author, message.guild);
     if (cmd.info.permission > userPerm) return message.channel.send(await client.emb.buildemb(message, client, {
         color: client.emb.colors.error,
         description: (await client.getString(message.guild, "commandhandler.error.nopermission")).replace("${cmd}", cmd.info.name).replace("${requiredlevel}", cmd.info.permission).replace("${userlevel}", userPerm)
     }));
 
+    // Checks if the command needs a nsfw channel && the channel isn't a nsfw channel
     if (cmd.info.nsfw && !message.channel.nsfw) return message.channel.send(await client.emb.buildemb(message, client, {
         color: client.emb.colors.error,
         description: (await client.getString(message.guild, "commandhandler.error.notnsfw")).replace("${cmd}", cmd.info.name)
     }));
 
+    // Split all Arguments
     const args = [];
     let str = content.slice(cmdName.length).trim();
 
-    for (let i = 0; 0 < str.length; i++) { // allow spaces when surrounded with " or ' and to have as many spaces between arguments
+    for (let i = 0; 0 < str.length; i++) { // allow spaces when surrounded with " or '
         let arg;
         if (str.startsWith('"') && str.indexOf('"', 1) > 0) {
             arg = str.slice(1, str.indexOf('"', 1));
@@ -56,6 +60,7 @@ module.exports = async (client, message) => {
         str = str.trim();
     }
 
+    // Checks if the command needs any arguments && no argument is given
     if (cmd.info.args && !args.length) {
         let desc = await client.getString(message.guild, "commandhandler.error.args");
 
