@@ -42,5 +42,6 @@ node index.js
 - [ ] Lots of Commands
 - [ ] Webinterface
 - [ ] caching
+- [ ] Optimize with additional packages like "@discordjs/opus" or bufferutil
 
 <!-- TODO: Add some screenshots of the webinterface etc.. -->

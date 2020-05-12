@@ -11,32 +11,19 @@ module.exports.info = {
     permission: 1,
 }
 
+let fields = [];
+let cmdcount = 0;
+
 module.exports.run = async (client, message, args) => {
 
+    // TODO: Rework
     if (!args[0]) { // Shows all Categories and Commands than no argument is given
-        let fields = [];
-        let cmdscount = 0;
-        let categoriescount = 0;
-
-        for (const categorie of fs.readdirSync("./src/commands/")) {
-            let cmds = [];
-
-            for (const cmd of fs.readdirSync("./src/commands/" + categorie)) {
-                if (!cmd.endsWith(".js")) return;
-                cmds.push(
-                    "- " + cmd.split('.')[0]
-                );
-                cmdscount += 1;
-            }
-
-            fields.push({
-                name: categorie,
-                value: cmds,
-                inline: true
-            });
-            categoriescount += 1;
-        }
-        // return client.embeds.buildemb(await client.getString(message.guild, "cmds.info.help.all.title"), (await client.getString(message.guild, "cmds.info.help.all.description")).replace("${cmdscount}", cmdscount).replace("${categoriescount}", categoriescount), "", fields, "", "", true, "", message, client);
+        // TODO: add links to.
+        message.channel.send(await client.emb.buildemb(message, client, {
+            title: await client.getString(message.guild, "cmds.info.help.all.title"),
+            description: (await client.getString(message.guild, "cmds.info.help.all.description")).replace("${cmdscount}", cmdcount).replace("${categoriescount}", fields.length),
+            fields: fields
+        }));
     } // else {
 
     //     let command = client.commands.get(args[0].toLowerCase()); // Gets the Command by the name
@@ -128,4 +115,26 @@ module.exports.run = async (client, message, args) => {
     //         return client.embeds.buildemb(command.info.name + ":", await client.getString(message.guild, command.info.description), "", fields, "", "", true, "", message, client);
     //     }
     // }
+}
+
+// TODO: Add to _base
+module.exports.init = async () => {
+    for (const categorie of fs.readdirSync("./src/commands/")) {
+        let cmds = [];
+
+        for (const cmd of fs.readdirSync("./src/commands/" + categorie)) {
+            if (!cmd.endsWith(".js")) return;
+            cmds.push(
+                "- " + cmd.split('.')[0]
+            );
+            cmdcount++;
+        }
+
+        fields.push({
+            name: categorie,
+            value: cmds,
+            inline: true
+        });
+    }
+    // TODO: Add Categories and cmds
 }

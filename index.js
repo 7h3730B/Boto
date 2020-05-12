@@ -39,6 +39,13 @@ for (const folders of fs.readdirSync(join(__dirname, "src/commands"))) {
 }
 client.log.info("---------Finished Commands---------\n");
 
+client.log.info("-----Executing init functions------\n");
+
+client.cmds.forEach(cmd => {
+    if (!cmd.init) return;
+    cmd.init();
+});
+
 // Load Events
 client.log.info("----------Loading Events-----------");
 for (const files of fs.readdirSync(join(__dirname, "src/events"))) {
