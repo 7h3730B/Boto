@@ -8,116 +8,112 @@ module.exports.info = {
     description: "cmds.info.help.description",
     usage: "cmds.info.help.usage",
     dm: true,
-    permission: 1,
+    permission: 1
 }
 
 let fields = [];
 let cmdcount = 0;
+let categories = [];
 
 module.exports.run = async (client, message, args) => {
 
     // TODO: Rework
     if (!args[0]) { // Shows all Categories and Commands than no argument is given
-        // TODO: add links to.
+        // TODO: add links to embed.
         message.channel.send(await client.emb.buildemb(message, client, {
             title: await client.getString(message.guild, "cmds.info.help.all.title"),
             description: (await client.getString(message.guild, "cmds.info.help.all.description")).replace("${cmdscount}", cmdcount).replace("${categoriescount}", fields.length),
             fields: fields
         }));
-    } // else {
+    } else {
 
-    //     let command = client.commands.get(args[0].toLowerCase()); // Gets the Command by the name
-    //     if (!command) command = await client.commands.find(cmd => cmd.info.aliases && cmd.info.aliases.includes(args[0].toLowerCase())); // or by the aliases
-    //     if (!command) {
-    //         let categories = [];
-    //         let fields = [];
+        let command = client.cmds.get(args[0].toLowerCase()); // Gets the Command by the name
+        if (!command) command = await client.cmds.find(cmd => cmd.info.aliases && cmd.info.aliases.includes(args[0].toLowerCase())); // or by the aliases
+        if (!command) {
+            let fields = [];
 
-    //         // Load all categories into an array
-    //         for (const categorie of fs.readdirSync("./src/commands/")) {
-    //             categories.push(categorie);
-    //         }
+            for (let i = 0; i <= categories.length; i++) {
+                if (categories[i].cat == args[0].toLowerCase()) {
+                    let cmds = [];
 
-    //         if (categories.includes(args[0].toLowerCase())) {
-    //             let cmds = [];
+                    for (let i = 0; i <= categories[i].cmds.length; i++) {
+                        const desc = await client.getString(message.guild, categories[i].cmds[i].info.description);
+                        cmds.push(
+                            "- " + categories[i].cmds[i] + " - " + desc
+                        );
+                    };
 
-    //             for (const cmd of fs.readdirSync("./src/commands/" + args[0].toLowerCase())) {
-    //                 if (!cmd.endsWith(".js")) return;
-    //                 const cmdreq = require("../" + args[0].toLowerCase() + "/" + cmd.split(".")[0]);
-    //                 cmds.push(
-    //                     "- " + cmd + " - " + await client.getString(message.guild, cmdreq.info.description)
-    //                 );
-    //             }
+                    fields.push({
+                        name: categories[i].cat,
+                        value: cmds,
+                        inline: false
+                    });
 
-    //             fields.push([
-    //                 args[0].toLowerCase(),
-    //                 cmds,
-    //                 true
-    //             ]);
+                    return message.emb.buildemb(message, client, {
+                        title: args[0],
+                        fields: fields
+                    });
+                }
+            };
+            return client.emb.buildemb(message, client, {
+                title: await client.getString(message.guild, "cmds.info.help.categories.title"),
+                description: (await client.getString(message.guild, "cmds.info.help.categories.description")).replace("${args[0]}", args[0].toLowerCase()),
+                fields: fields
+            });
+        } else {
+            let fields = [];
+            const yes = await client.getString(message.guild, "cmds.info.help.cmds.yes");
+            const no = await client.getString(message.guild, "cmds.info.help.cmds.no");
 
-    //             return client.embeds.buildemb("", "", "", fields, "", "", true, "", message, client);
+            if (command.info.usage) {
+                fields.push({
+                    name: await client.getString(message.guild, "cmds.info.help.cmds.usage"),
+                    value: prefix + command.info.name + " " + await client.getString(message.guild, command.info.usage),
+                    inline: true
+                });
+            }
 
-    //         } else {
-    //             return client.embeds.error(client, await client.getString(message.guild, "cmds.info.help.categories.title"), (await client.getString(message.guild, "cmds.info.help.categories.description")).replace("${args[0]}", args[0].toLowerCase()), message);
-    //         }
+            fields.push({
+                name: await client.getString(message.guild, "cmds.info.help.cmds.args"),
+                value: command.info.args ? yes : no,
+                inline: true
+            });
 
-    //     } else {
-    //         let fields = [];
+            if (command.info.aliases) {
+                fields.push({
+                    name: await client.getString(message.guild, "cmds.info.help.cmds.aliases"),
+                    value: command.info.aliases.join(", "),
+                    inline: true
+                });
+            }
 
-    //         if (command.info.usage) {
-    //             fields.push([
-    //                 await client.getString(message.guild, "cmds.info.help.cmds.usage"),
-    //                 prefix + command.info.name + " " + await client.getString(message.guild, command.info.usage),
-    //                 false
-    //             ]);
-    //         }
+            fields.push({
+                name: await client.getString(message.guild, "cmds.info.help.cmds.dm"),
+                value: command.info.dm ? yes : no,
+                inline: true
+            });
 
-    //         let hasArgs = "";
-    //         if (command.info.args) hasArgs = await client.getString(message.guild, "cmds.info.help.cmds.yes");
-    //         else hasArgs = await client.getString(message.guild, "cmds.info.help.cmds.no");
+            fields.push({
+                name: await client.getString(message.guild, "cmds.info.help.cmds.nsfw"),
+                value: command.info.nsfw ? yes : no,
+                inline: true
+            });
 
-    //         fields.push([
-    //             await client.getString(message.guild, "cmds.info.help.cmds.args"),
-    //             hasArgs,
-    //             false
-    //         ]);
+            fields.push({
+                name: await client.getString(message.guild, "cmds.info.help.cmds.cooldown"),
+                value: (command.info.cooldown || "3") + " s",
+                inline: true
+            });
 
-    //         if (command.info.aliases) {
-    //             fields.push([
-    //                 await client.getString(message.guild, "cmds.info.help.cmds.aliases"),
-    //                 command.info.aliases.join(", "),
-    //                 false
-    //             ]);
-    //         }
-
-    //         let isDM = "";
-    //         if (command.info.dm) isDM = await client.getString(message.guild, "cmds.info.help.cmds.yes");
-    //         else isDM = await client.getString(message.guild, "cmds.info.help.cmds.no");
-
-    //         fields.push([
-    //             await client.getString(message.guild, "cmds.info.help.cmds.dm"),
-    //             isDM,
-    //             false
-    //         ]);
-
-    //         if (command.info.nsfw) {
-    //             fields.push([
-    //                 await client.getString(message.guild, "cmds.info.help.cmds.nsfw"),
-    //                 await client.getString(message.guild, "cmds.info.help.cmds.yes"),
-    //                 true
-    //             ]);
-    //         }
-
-    //         fields.push([
-    //             await client.getString(message.guild, "cmds.info.help.cmds.cooldown"),
-    //             command.info.cooldown.toString() + " Sekunden",
-    //             false
-    //         ]);
-    //         return client.embeds.buildemb(command.info.name + ":", await client.getString(message.guild, command.info.description), "", fields, "", "", true, "", message, client);
-    //     }
-    // }
+            return message.channel.send(await client.emb.buildemb(message, client, {
+                title: command.info.name + ":",
+                description: await client.getString(message.guild, command.info.description),
+                fields: fields
+            }));
+        }
+    }
 }
 
-// TODO: Add to _base
 module.exports.init = async () => {
     for (const categorie of fs.readdirSync("./src/commands/")) {
         let cmds = [];
@@ -136,5 +132,19 @@ module.exports.init = async () => {
             inline: true
         });
     }
-    // TODO: Add Categories and cmds
+    // Load all categories into an array
+    for (const categorie of fs.readdirSync("./src/commands/")) {
+        let cmds = [];
+
+        for (const cmd of fs.readdirSync("./src/commands/" + categorie)) {
+            if (!cmd.endsWith(".js")) return;
+            const cmdreq = require("../" + categorie + "/" + cmd.split(".")[0]);
+            cmds.push(cmdreq);
+        }
+
+        categories.push({
+            cat: categorie,
+            cmds: cmds
+        });
+    }
 }

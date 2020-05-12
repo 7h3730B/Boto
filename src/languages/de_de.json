@@ -22,7 +22,7 @@
     "cmds.info.help.all.description": "Es gibt **${cmdscount}** Commands und **${categoriescount}** Kategorien.",
     "cmds.info.help.cmds.usage": "Sollte so benutzt werden:",
     "cmds.info.help.cmds.args": "Braucht Argumente",
-    "cmds.info.help.cmds.aliases": "Kann man auch verwenden:",
+    "cmds.info.help.cmds.aliases": "Aliases:",
     "cmds.info.help.cmds.dm": "Kann auch in DMs verwendet werden:",
     "cmds.info.help.cmds.cooldown": "Cooldown",
     "cmds.info.help.cmds.yes": "Ja",
