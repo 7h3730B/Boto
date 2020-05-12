@@ -11,6 +11,3 @@ package-lock.json
 
 # Config
 config.json
-
-# __base for commands
-src/__base
