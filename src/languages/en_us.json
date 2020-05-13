@@ -8,13 +8,22 @@
     "commandhandler.error.failedtitle": "Command failed",
     "commandhandler.error.notnsfw": "The command: **${cmd}** can **only** be used in NSFW Channels",
 
+
     "embeds.success.footertext": "Succesful request from: ${username}",
     "embeds.error.footertext": "An Error occured...",
     "embeds.warn.footertext": "${username} triggered a warning",
     "embeds.buildemb.footertext": "Executed from: ${username}",
 
+
     "cmds.developer.test.description": "Just for testing purposes",
     "cmds.developer.test.usage": "<arg1> <arg2>",
+
+    "cmds.developer.restart.description": "Restarts the bot",
+    
+    "cmds.developer.ping.description": "Pong!",
+    
+    "cmds.developer.serverlist.description": "Shows all servers",
+
 
     "cmds.info.help.description": "Shows you all Categories and Commands",
     "cmds.info.help.usage": "[Command] - Shows you information of a command\n[Categorie] - Shows you all Commands from a Categorie",
@@ -30,4 +39,5 @@
     "cmds.info.help.categories.title": "Nothing found",
     "cmds.info.help.categories.description": "Couldn't find a categorie or a command for: **${args[0]}**",
     "cmds.info.help.cmds.nsfw": "Can only be used in NSFW Channels"
+
 }

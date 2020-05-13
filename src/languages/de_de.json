@@ -8,13 +8,22 @@
     "commandhandler.error.failedtitle": "Command failed",
     "commandhandler.error.notnsfw": "Der Command: **${cmd}** kann **nur** in NSFW Channel ausgeführt werden",
 
+    
     "embeds.success.footertext": "Erfolgreich ausgeführt auf Anfrage von: ${username}",
     "embeds.error.footertext": "Ein Fehler trat auf...",
     "embeds.warn.footertext": "${username} hat eine Warnung ausgelöst",
     "embeds.buildemb.footertext": "Ausgeführt von: ${username}",
 
+
     "cmds.developer.test.description": "Nur zum Testen da sonst nichts",
     "cmds.developer.test.usage": "<arg1> <arg2>",
+
+    "cmds.developer.restart.description": "Startet den Bot neu",
+
+    "cmds.developer.ping.description": "Pong!",
+
+    "cmds.developer.serverlist.description": "Zeigt alle Server",
+
 
     "cmds.info.help.description": "Zeigt dir alle Commands und Kategorien",
     "cmds.info.help.usage": "[Command] - Zeig dir Informationen zu einem Command\n[Kategorie] - Zeigt dir alle Commands in einer Kategorie an",
@@ -30,4 +39,5 @@
     "cmds.info.help.categories.title": "Nichts gefunden",
     "cmds.info.help.categories.description": "Konnte keine Kategorie und auch keinen Command für: **${args[0]}** finden",
     "cmds.info.help.cmds.nsfw": "Kann nur in einem NSFW Channel ausgeführt werden"
+
 }
