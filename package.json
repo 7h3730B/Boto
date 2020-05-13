@@ -28,10 +28,9 @@
     "delay": "500"
   },
   "dependencies": {
-    "@discordjs/uws": "^11.149.1",
     "discord.js": "^12.1.1",
     "erlpack": "discordapp/erlpack",
-    "node-opus": "^0.3.1",
+    "opusscript": "0.0.7",
     "winston": "^3.2.1",
     "zlib-sync": "^0.1.4"
   },

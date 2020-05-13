@@ -1,0 +1,19 @@
+module.exports.info = {
+    name: "same as filename without .js",
+    description: "cmds.folder.filename.description",
+    usage: "cmds.folder.filename.description",
+    aliases: ["t", "te"],
+    dm: false, // not available in dms
+    args: false, // no arguments
+    nsfw: false, // doesn't need an NSFW Channel
+    permission: 1, // normal user can use this
+    cooldown: 5,
+}
+
+module.exports.run = async (client, message, args) => {
+    
+}
+
+module.exports.init = async () => {
+    
+}

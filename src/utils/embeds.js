@@ -24,7 +24,7 @@ const buildemb = async (message, client, opts) => new MessageEmbed()
     .setImage(opts.image || '')
     .setURL(opts.url)
     .setTimestamp()
-    .setFooter(opts.footerText || (await client.getString(client.guild, "embeds.buildemb.footertext")).replace("${username}", message.author.username), opts.footerUrl || message.author.avatarURL);
+    .setFooter(opts.footerText || (await client.getString(message.guild, "embeds.buildemb.footertext")).replace("${username}", message.author.username), opts.footerUrl || message.author.avatarURL);
 
 module.exports = {
     buildemb: buildemb,
