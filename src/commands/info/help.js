@@ -20,6 +20,7 @@ module.exports.run = async (client, message, args) => {
     // TODO: Rework
     if (!args[0]) { // Shows all Categories and Commands than no argument is given
         // TODO: add links to embed.
+        if (!fields) await this.init();
         message.channel.send(await client.emb.buildemb(message, client, {
             title: await client.getString(message.guild, "cmds.info.help.all.title"),
             description: (await client.getString(message.guild, "cmds.info.help.all.description")).replace("${cmdscount}", cmdcount).replace("${categoriescount}", fields.length),
@@ -32,34 +33,31 @@ module.exports.run = async (client, message, args) => {
         if (!command) {
             let fields = [];
 
-            for (let i = 0; i <= categories.length; i++) {
-                if (categories[i].cat == args[0].toLowerCase()) {
-                    let cmds = [];
-
-                    for (let i = 0; i <= categories[i].cmds.length; i++) {
-                        const desc = await client.getString(message.guild, categories[i].cmds[i].info.description);
-                        cmds.push(
-                            "- " + categories[i].cmds[i] + " - " + desc
-                        );
-                    };
-
-                    fields.push({
-                        name: categories[i].cat,
-                        value: cmds,
-                        inline: false
-                    });
-
-                    return message.emb.buildemb(message, client, {
-                        title: args[0],
-                        fields: fields
-                    });
-                }
-            };
-            return client.emb.buildemb(message, client, {
+            const cat = categories.find(obj => obj.cat == args[0].toLowerCase());
+            if (!cat) return client.emb.buildemb(message, client, {
                 title: await client.getString(message.guild, "cmds.info.help.categories.title"),
+                color: client.emb.colors.error,
                 description: (await client.getString(message.guild, "cmds.info.help.categories.description")).replace("${args[0]}", args[0].toLowerCase()),
                 fields: fields
             });
+            let cmds = [];
+
+            for (let j = 0; j < cat.cmds.length; j++) {
+                cmds.push(
+                    "- " + cat.cmds[j].info.name + " ~~ " + await client.getString(message.guild, cat.cmds[j].info.description)
+                );
+            }
+
+            fields.push({
+                name: cat.cat,
+                value: cmds,
+                inline: false
+            });
+
+            return message.channel.send(await client.emb.buildemb(message, client, {
+                title: args[0],
+                fields: fields
+            }));
         } else {
             let fields = [];
             const yes = await client.getString(message.guild, "cmds.info.help.cmds.yes");

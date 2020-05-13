@@ -1,5 +1,6 @@
 const {
-    prefix
+    prefix,
+    owners
 } = require("../../config.json");
 const {
     Collection
@@ -78,7 +79,7 @@ module.exports = async (client, message) => {
     const timestamps = client.cooldowns.get(cmd.info.name);
     const cooldownAmount = (cmd.info.cooldown || 3) * 1000;
 
-    if (timestamps.has(message.author.id)) {
+    if (timestamps.has(message.author.id) && !owners.includes(message.author.id)) {
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
         if (now < expirationTime) {
