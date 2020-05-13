@@ -1,6 +1,9 @@
 # Commands List
  --- 
 ## DEVELOPER
+- [ping](#ping)
+- [restart](#restart)
+- [serverlist](#serverlist)
 - [test](#test)
 ## INFO
 - [help](#help)
@@ -9,13 +12,49 @@
  --- 
 ## DEVELOPER
 
+### ping
+
+> Pong!
+
+| | |
+|---|---|
+| PermissionLevel | 10 |
+| Categorie | developer |
+| Cooldown | 3 second(s) |
+| available in DMs | true |
+
+
+### restart
+
+> Restarts the bot
+
+| | |
+|---|---|
+| PermissionLevel | 10 |
+| Categorie | developer |
+| Cooldown | 3 second(s) |
+| available in DMs | true |
+
+
+### serverlist
+
+> Shows all servers
+
+| | |
+|---|---|
+| PermissionLevel | 10 |
+| Categorie | developer |
+| Cooldown | 3 second(s) |
+| available in DMs | true |
+
+
 ### test
 
 > Just for testing purposes
 
 | | |
 |---|---|
-| PermissionLevel | 1 |
+| PermissionLevel | 10 |
 | Categorie | developer |
 | Cooldown | 5 second(s) |
 | Aliases | t, te
@@ -34,7 +73,7 @@ test \<arg1> \<arg2>
 |---|---|
 | PermissionLevel | 1 |
 | Categorie | info |
-| Cooldown | 1 second(s) |
+| Cooldown | 3 second(s) |
 | available in DMs | true |
 
 **Usage:**   
