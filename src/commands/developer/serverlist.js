@@ -16,5 +16,5 @@ module.exports.run = async (client, message, args) => {
         color: client.emb.colors.success,
         title: client.guilds.cache.size.toString(),
         description: client.guilds.cache.sort(compare).map(server => `\`${server.name}\``).join("\n")
-    }));
+    })); 
 }
